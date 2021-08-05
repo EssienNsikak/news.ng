@@ -30,6 +30,10 @@ app.use((req, res, next) => {
 
 app.use('/images', express.static(path.join(__dirname, '/images')));
 
+app.get('/', (req, res) => {
+  res.send('Hello, welcome to news.ng API')
+});
+
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -57,7 +61,7 @@ app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/categories', categoryRoute);
 
-PORT = process.env.PORT
+PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
   console.log(`Backend is running on port ${PORT}`)

@@ -11,7 +11,7 @@ export default function SinglePost() {
   const path = location.pathname.split('/')[2];
 
   const [post, setPost] = useState({});
-  const PF = 'http://localhost:5000/images/';
+  const PF = 'https://newsblogng.herokuapp.com/images/';
 
   const { user } = useContext(Context);
 
@@ -21,7 +21,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const res = await Axios.get('http://localhost:5000/api/posts/'+path)
+      const res = await Axios.get('https://newsblogng.herokuapp.com/api/posts/'+path)
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -31,7 +31,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await Axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
+      await Axios.delete(`https://newsblogng.herokuapp.com/api/posts/${post._id}`, {
         data:{username: user.username}
       });
       window.location.replace('/');
@@ -41,7 +41,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await Axios.put(`http://localhost:5000/api/posts/${post._id}`, {
+      await Axios.put(`https://newsblogng.herokuapp.com/api/posts/${post._id}`, {
         username: user.username, title, desc
       });
       setUpdateMode(false);

@@ -27,12 +27,12 @@ export default function Write() {
       newPost.photo = filename;
 
       try {
-        await Axios.post('http://localhost:5000/api/upload', data);
+        await Axios.post('https://newsblogng.herokuapp.com/api/upload', data);
       } catch (err) {}
     }
 
     try {
-      const res = await Axios.post('http://localhost:5000/api/posts', newPost);
+      const res = await Axios.post('https://newsblogng.herokuapp.com/api/posts', newPost);
       window.location.replace('/post/' + res.data._id);
     } catch (err) {}
   }
@@ -46,35 +46,35 @@ export default function Write() {
           alt=''
         />
       )}
-      <form className="writeForm" onSubmit={handleSubmit}>
-        <div className="writeFormGroup">
-          <label htmlFor="fileInput">
-            <i className="writeIcon fas fa-plus"></i>
+      <form className='writeForm' onSubmit={handleSubmit}>
+        <div className='writeFormGroup'>
+          <label htmlFor='fileInput'>
+            <i className='writeIcon fas fa-plus'></i>
           </label>
           <input 
             id='fileInput'
             type='file'
-            style={{ display: "none" }} 
+            style={{ display: 'none' }} 
             onChange={(e) => setFile(e.target.files[0])} 
           />
           <input
-            className="writeInput"
-            placeholder="Title"
-            type="text"
+            className='writeInput'
+            placeholder='Title'
+            type='text'
             autoFocus={true}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="writeFormGroup">
+        <div className='writeFormGroup'>
           <textarea
-            className="writeInput writeText"
-            placeholder="Post your story..."
-            type="text"
+            className='writeInput writeText'
+            placeholder='Post your story...'
+            type='text'
             autoFocus={true}
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
-        <button className="writeSubmit" type="submit">
+        <button className='writeSubmit' type='submit'>
           Publish
         </button>
       </form>

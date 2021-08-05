@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from "react-router";
-import Header from "../../components/header/Header";
-import Posts from "../../components/posts/Posts";
-import Sidebar from "../../components/sidebar/SideBar";
-import "./homepage.css";
+import { useLocation } from 'react-router';
+import Header from '../../components/header/Header';
+import Posts from '../../components/posts/Posts';
+import Sidebar from '../../components/sidebar/SideBar';
+import './homepage.css';
 import Axios from 'axios';
 
 export default function Homepage() {
@@ -15,7 +15,7 @@ export default function Homepage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await Axios.get('http://localhost:5000/api/posts/all-posts' + search)
+      const res = await Axios.get('https://newsblogng.herokuapp.com/api/posts/all-posts' + search)
       setPosts(res.data)
     }
     fetchPosts()
@@ -24,7 +24,7 @@ export default function Homepage() {
   return (
     <>
       <Header />
-      <div className="home">
+      <div className='home'>
         <Posts posts={posts}/>
         <Sidebar />
       </div>

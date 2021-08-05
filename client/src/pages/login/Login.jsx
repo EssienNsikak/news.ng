@@ -1,7 +1,7 @@
-import "./login.css";
-import { Link } from "react-router-dom";
-import { useContext, useRef } from "react";
-import { Context } from "../../context/Context";
+import './login.css';
+import { Link } from 'react-router-dom';
+import { useContext, useRef } from 'react';
+import { Context } from '../../context/Context';
 import Axios from 'axios';
 
 
@@ -17,7 +17,7 @@ export default function Login() {
     console.log(userRef.current.value);
     console.log(passwordRef.current.value);
     try {
-      const res = await Axios.post('http://localhost:5000/api/auth/login', {
+      const res = await Axios.post('https://newsblogng.herokuapp.com/api/auth/login', {
         username: userRef.current.value,
         password: passwordRef.current.value
       })
@@ -28,35 +28,35 @@ export default function Login() {
   };
     
   return (
-    <div className="login">
-      <span className="loginTitle">Login</span>
-      <form className="loginForm" onSubmit={handleSubmit}>
+    <div className='login'>
+      <span className='loginTitle'>Login</span>
+      <form className='loginForm' onSubmit={handleSubmit}>
 
         <label>Username</label>
         <input 
-          className="loginInput" 
-          type="text" 
-          placeholder="Enter your username..." 
+          className='loginInput' 
+          type='text' 
+          placeholder='Enter your username...' 
           ref={userRef}
         />
         
         <label>Password</label>
         <input
-          className="loginInput" 
-          type="password" 
-          placeholder="Enter your password..." 
+          className='loginInput' 
+          type='password' 
+          placeholder='Enter your password...' 
           ref={passwordRef}
         />
 
         <button 
-          className="loginButton" 
+          className='loginButton' 
           type='submit' 
           disabled={isFetching}
         >Login</button>
 
       </form>
-        <Link className="link" to='/register'>
-          <button className="loginRegisterButton">Register</button>
+        <Link className='link' to='/register'>
+          <button className='loginRegisterButton'>Register</button>
         </Link>
     </div>
   );

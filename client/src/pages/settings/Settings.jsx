@@ -1,7 +1,7 @@
-import "./settings.css";
-import Sidebar from "../../components/sidebar/SideBar";
-import { useState, useContext } from "react";
-import { Context } from "../../context/Context";
+import './settings.css';
+import Sidebar from '../../components/sidebar/SideBar';
+import { useState, useContext } from 'react';
+import { Context } from '../../context/Context';
 import Axios from 'axios';
 
 
@@ -14,7 +14,7 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = 'http://localhost:5000/images/';
+  const PF = 'https://newsblogng.herokuapp.com/images/';
 
   const handleSubmit = async (e) => {
 
@@ -36,12 +36,12 @@ export default function Settings() {
       updatedUser.profilePic = filename;
 
       try {
-        await Axios.post('http://localhost:5000/api/upload', data);
+        await Axios.post('https://newsblogng.herokuapp.com/api/upload', data);
       } catch (err) {}
     }
 
     try {
-      const res = await Axios.put('http://localhost:5000/api/users/' + user._id, updatedUser);
+      const res = await Axios.put('https://newsblogng.herokuapp.com/api/users/' + user._id, updatedUser);
       setSuccess(true);
       dispatch({ type: 'UPDATE_SUCCESS', payload: res.data })
       window.location.replace('/');
@@ -51,57 +51,57 @@ export default function Settings() {
   };
 
   return (
-    <div className="settings">
-      <div className="settingsWrapper">
-        <div className="settingsTitle">
-          <span className="settingsTitleUpdate">Update Your Account</span>
-          <span className="settingsTitleDelete">Delete Account</span>
+    <div className='settings'>
+      <div className='settingsWrapper'>
+        <div className='settingsTitle'>
+          <span className='settingsTitleUpdate'>Update Your Account</span>
+          <span className='settingsTitleDelete'>Delete Account</span>
         </div>
-        <form className="settingsForm" onSubmit={handleSubmit}>
+        <form className='settingsForm' onSubmit={handleSubmit}>
 
           <label>Profile Picture</label>
-          <div className="settingsPP">
+          <div className='settingsPP'>
             <img
             src={file ? URL.createObjectURL(file) : PF + user.profilePic}
             alt='myPicture'
             />
-            <label htmlFor="fileInput">
-              <i className="settingsPPIcon far fa-user-circle"></i>{" "}
+            <label htmlFor='fileInput'>
+              <i className='settingsPPIcon far fa-user-circle'></i>{' '}
             </label>
             <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              className="settingsPPInput"
+              id='fileInput'
+              type='file'
+              style={{ display: 'none' }}
+              className='settingsPPInput'
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
 
           <label>Username</label>
           <input 
-            type="text" 
+            type='text' 
             placeholder={user.username} 
-            name="name"
+            name='name'
             onChange={(e) => setUsername(e.target.value)} 
           />
 
           <label>Email</label>
           <input 
-            type="email" 
+            type='email' 
             placeholder={user.email} 
-            name="email" 
+            name='email' 
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <label>Password</label>
           <input 
-            type="password" 
-            placeholder="Update your Password" 
-            name="password" 
+            type='password' 
+            placeholder='Update your Password' 
+            name='password' 
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="settingsSubmitButton" type="submit">
+          <button className='settingsSubmitButton' type='submit'>
             Update
           </button>
           {
